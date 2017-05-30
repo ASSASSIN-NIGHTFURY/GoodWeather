@@ -72,7 +72,7 @@ MEDIA_URL = ''
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
 
-STATIC_ROOT = os.path.normpath(os.path.join(PROJECT_PATH, 'staticfiles'))
+STATIC_ROOT = os.path.normpath(os.path.join(PROJECT_PATH, '../static'))
 
 
 # URL prefix for static files.
