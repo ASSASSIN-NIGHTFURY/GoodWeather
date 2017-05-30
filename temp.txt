@@ -1,0 +1,9 @@
+git add .
+git commit -m 'update'
+git push origin master
+
+
+ASSASSIN-NIGHTFURY
+fjdlkvifgj1994
+
+web: python manage.py runserver 0.0.0.0:80

@@ -3,3 +3,4 @@ python-dotenv==0.1.0
 ShopifyAPI
 yweather
 gunicorn
+psycopg2==2.4.5
