@@ -24,7 +24,7 @@ def home(request, *args, **kwargs):
 		shop = shopify.Shop.current()
 		shop_id = str(shop.id)
 	Customer.objects.filter(shop_name=shop_id).delete()
-	Orders.objects.filter(shop_name=shop_id).delete()
+	Order.objects.filter(shop_name=shop_id).delete()
 	#  getting the customers'data and orders' data from shopify API and saving in database.
 	with request.user.session:
 		customers = shopify.Customer.find()

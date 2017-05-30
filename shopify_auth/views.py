@@ -39,7 +39,7 @@ def authenticate(request, *args, **kwargs):
         redirect_uri = request.build_absolute_uri(reverse(shopify_auth_views.finalize))
         #redirect_uri = request.build_absolute_uri(reverse(shopify_auth.views.finalize))
         scope = settings.SHOPIFY_APP_API_SCOPE
-        print(redirect_uri)
+        print '+++++++++++++++++' + redirect_uri
         redirect_uri = redirect_uri[:-1]
         temp_url = shopify.Session(shop.strip()).create_permission_url(scope, redirect_uri)
 
