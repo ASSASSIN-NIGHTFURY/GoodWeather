@@ -1,0 +1,21 @@
+{
+  "name": "GoodWeather",
+  "description": "This is review of app.",
+  "scripts": {
+    "postdeploy": "bin/setup",
+    "pr-predestroy": "bin/teardown"
+  },
+  "env": {
+    "assassin": "nightfury"
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/ASSASSIN-NIGHTFURY/GoodWeather"
+    }
+  ]
+}
