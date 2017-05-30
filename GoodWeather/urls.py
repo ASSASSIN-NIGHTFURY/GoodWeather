@@ -3,6 +3,8 @@ from django.conf.urls import include, url
 from main_app.views import home
 from django.contrib import admin
 import settings
+# from django.conf import settings
+from django.conf.urls.static import static
 
 admin.autodiscover()
 
