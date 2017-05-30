@@ -201,8 +201,8 @@ LOGIN_URL = 'shopify_auth.views.login'
 # the settings for Shopify Embedded App.
 
 SHOPIFY_APP_NAME = 'GoodWeather'
-SHOPIFY_APP_API_KEY = '5ecb59001932ce78bb7b4ac5ec2732a0'
-SHOPIFY_APP_API_SECRET = '5605ad2a6c8d935d0ab077c4fc4f8d6f'
+SHOPIFY_APP_API_KEY = '8ca35e24c1ac87af55ae965f3addefb1'
+SHOPIFY_APP_API_SECRET = '4cc7b7e077edbde73f60848d73aed2e9'
 SHOPIFY_APP_API_SCOPE = ['read_products', 'read_orders', 'write_script_tags', 'read_customers']
 SHOPIFY_APP_IS_EMBEDDED = True
 SHOPIFY_APP_DEV_MODE = False
