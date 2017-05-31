@@ -54,7 +54,7 @@ def home(request, *args, **kwargs):
 
 	# getting the customers for each shop and making csv and exporting
 	customers = Customer.objects.filter(shop_name=shop_id)
-	csv_url = settings.PROJECT_PATH + '/' + settings.STATIC_ROOT + 'csv/' + shop_id + '.csv'
+	csv_url = settings.STATIC_ROOT + '/csv/' + shop_id + '.csv'
 	city_list = []
 	with open(csv_url, 'wb') as f:
 		writer = csv.writer(f)
@@ -131,7 +131,7 @@ def show_list(request, day, *args, **kwargs):
 		week_flag = 1
 
 	# the path of csv for each day type. the pattern is like this, 23903294-today.csv
-	csv_url = settings.PROJECT_PATH + '/' + settings.STATIC_ROOT + 'csv/' + shop_id + '-' + day + '.csv'
+	csv_url = settings.STATIC_ROOT + '/csv/' + shop_id + '-' + day + '.csv'
 
 	# getting the result with csv file
 	customers = Customer.objects.filter(shop_name=shop_id)
