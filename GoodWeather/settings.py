@@ -20,14 +20,9 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'goodweather',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
+    'default': dj_database_url.config(
+        default=config('postgres://kohcafbcpaaigy:558ce2701ab525d74b828a1fda62dacf797c8a090ba2961539953f3ac1d93272@ec2-174-129-224-33.compute-1.amazonaws.com:5432/d9g658hov5qplg')
+    )
 }
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
