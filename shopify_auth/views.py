@@ -20,6 +20,7 @@ def login(request, *args, **kwargs):
     # as a result of submitting the login form.
     shop = request.POST.get('shop', request.GET.get('shop'))
     print '++++++++++++++++++++ it is login ++++++++++++++++++'
+    print shop
     # If the shop parameter has already been provided, attempt to authenticate immediately.
     if shop:
         print '++++++++++++++++ authenticate +++++++++++++++++'
