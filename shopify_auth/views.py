@@ -44,7 +44,7 @@ def authenticate(request, *args, **kwargs):
         redirect_uri = redirect_uri[:-1]
         temp_url = shopify.Session(shop.strip()).create_permission_url(scope, redirect_uri)
 
-        permission_url = temp_url
+        permission_url = temp_url.replace('http', 'https').replace('httpss', 'https')
         
         if settings.SHOPIFY_APP_IS_EMBEDDED:
             # Embedded Apps should use a Javascript redirect.
