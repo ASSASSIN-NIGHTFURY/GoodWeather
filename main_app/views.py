@@ -7,7 +7,7 @@ from django.http import JsonResponse, HttpResponse
 from django.core.mail import EmailMessage
 from django.db.models import Q
 from django.utils.crypto import get_random_string
-from models import AuthAppShopUser, Customer, Weather, Order
+from models import AuthAppShopUser, AuthShop, Customer, Weather, Order
 from GoodWeather import settings
 from shopify_webhook.decorators import webhook
 import shopify
@@ -16,8 +16,36 @@ import csv
 import yweather
 
 
+@csrf_exempt
+@webhook
+def uninstall_webhook_callback(request):
+	user = AuthAppShopUser.objects.get(myshopify_domain=request.webhook_domain)
+	webhook_data = request.webhook_data
+	print '++++++++++++++++++ webhook_data.name ++++++++++++++++++'
+	print webhook_data['domain']
+	print request.webhook_domain
+	user.delete()
+	current_shop = AuthShop.objects.filter(shop_name=request.webhook_domain).order_by('-id')[0]
+	current_shop.delete()
+	print('webhook ok')
+	return HttpResponse('ok')
+
 @login_required
 def home(request, *args, **kwargs):
+	webhook_shop_address = settings.APP_DOMAIN + '/app/uninstall_webhook_callback/'
+	with request.user.session:
+		webhook_status = 0
+		webhook_shops = shopify.Webhook.find()
+		if webhook_shops:
+			for webhook_shop in webhook_shops:
+				if webhook_shop.address == webhook_shop_address:
+					webhook_status = 1
+		if webhook_status == 0:
+			webhook_shop = shopify.Webhook()
+			webhook_shop.topic = 'app/uninstalled'
+			webhook_shop.address = webhook_shop_address
+			webhook_shop.format = 'json'
+			webhook_shop.save()
 	# getting the shop name and deleting the old customers' data
 	shop_id = ''
 	with request.user.session:
@@ -54,7 +82,7 @@ def home(request, *args, **kwargs):
 
 	# getting the customers for each shop and making csv and exporting
 	customers = Customer.objects.filter(shop_name=shop_id)
-	csv_url = settings.STATIC_ROOT + '/csv/' + shop_id + '.csv'
+	csv_url = settings.PROJECT_PATH + '/main_app' + settings.STATIC_URL + 'csv/' + shop_id + '.csv'
 	city_list = []
 	with open(csv_url, 'wb') as f:
 		writer = csv.writer(f)
@@ -131,7 +159,7 @@ def show_list(request, day, *args, **kwargs):
 		week_flag = 1
 
 	# the path of csv for each day type. the pattern is like this, 23903294-today.csv
-	csv_url = settings.STATIC_ROOT + '/csv/' + shop_id + '-' + day + '.csv'
+	csv_url = settings.PROJECT_PATH + '/main_app' + settings.STATIC_URL + 'csv/' + shop_id + '-' + day + '.csv'
 
 	# getting the result with csv file
 	customers = Customer.objects.filter(shop_name=shop_id)
