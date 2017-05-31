@@ -193,7 +193,7 @@ LOGIN_URL = 'shopify_auth.views.login'
 
 # the settings for Shopify Embedded App.
 APP_DOMAIN = 'https://goodweatherapp.herokuapp.com'
-SHOPIFY_APP_NAME = 'GoodWeather'
+SHOPIFY_APP_NAME = 'Good Weather'
 SHOPIFY_APP_API_KEY = '8ca35e24c1ac87af55ae965f3addefb1'
 SHOPIFY_APP_API_SECRET = '4cc7b7e077edbde73f60848d73aed2e9'
 SHOPIFY_APP_API_SCOPE = ['read_products', 'read_orders', 'write_script_tags', 'read_customers']
