@@ -1,6 +1,6 @@
 # Django settings for auth_demo project.
 import os
-
+import dj_database_url
 #import dotenv
 from django.conf import global_settings
 
